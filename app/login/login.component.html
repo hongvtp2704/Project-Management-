@@ -1,0 +1,22 @@
+<div class="bg-info bg-gradien d-flex" style="height: 100vh;">
+  <form class=" col-5 mx-auto border rounded-start p-5 bg-white align-self-center" [formGroup]="formGroup"
+    (ngSubmit)="login()">
+    <h2>Login</h2>
+    <div class="mb-3">
+      <label for="" class="form-label">UserName</label>
+      <input type="text" class="form-control" formControlName="userName">
+      <div class="text-danger"
+        *ngIf="(formGroup.get('userName')?.errors?.required && formGroup.get('userName')?.touched) || formGroup.get('userName')?.errors?.minlength">
+        Username phải lớn hơn 6 kí tự.</div>
+    </div>
+    <div class="mb-3">
+      <label for="" class="form-label">Password</label>
+      <input type="password" class="form-control" formControlName="password">
+      <div class="text-danger"
+        *ngIf="(formGroup.get('password')?.errors?.required && formGroup.get('password')?.touched) || formGroup.get('password')?.errors?.minlength || formGroup.get('password')?.errors?.maxlength">
+        Password phải từ 6 đến 12 kí tự.</div>
+    </div>
+    <div class="text-danger mb-3" *ngIf="error">{{ error }}</div>
+    <button type="submit" class="btn btn-primary" [disabled]="formGroup.invalid">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,140 @@
+<div class="card" style="width:100%">
+  <div class="card-header">
+    <button type="button" class="btn btn-primary" (click)="resetForm()" data-bs-toggle="modal"
+      data-bs-target="#createProject">Create
+      Project</button>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Project Name</th>
+          <th scope="col">Date Of Start</th>
+          <th scope="col">Status</th>
+          <th scope="col">Description</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects; index as i">
+          <th scope="row">{{ i +1 }}</th>
+          <td><a (click)="navigateToTask(project._id)">{{ project.name}}</a></td>
+          <td>{{ project.dateOfStart | date}}</td>
+          <td>{{ project.status }}</td>
+          <td>{{ project.description }}</td>
+          <td>
+            <button type="button" class="btn btn-warning" (click)="getProjectById(project._id)" data-bs-toggle="modal"
+              data-bs-target="#editProject">Sửa</button>
+            <button type="button" class="btn btn-danger" (click)="deleteProject(project._id)">Xóa</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- Modal Add -->
+<div class="modal fade" id="createProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Project</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formGroup">
+          <div class="mb-3">
+            <label for="" class="form-label">Project Name</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="Project Name">
+            <div class="text-danger" *ngIf="formGroup.get('name')?.touched && formGroup.get('name')?.errors?.required">
+              Project Name invalid.</div>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Description</label>
+            <textarea class="form-control" formControlName="description" placeholder="Description"></textarea>
+            <div class="text-danger"
+              *ngIf="(formGroup.get('description')?.touched && formGroup.get('description')?.errors?.required) || formGroup.get('description')?.errors?.minlength">
+              Description must be larger 6 character.</div>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Date Of Start</label>
+            <input type="date" class="form-control" formControlName="dateOfStart" name="dateOfStart">
+            <div class="text-danger"
+              *ngIf="formGroup.get('dateOfStart')?.touched && formGroup.get('dateOfStart')?.errors?.required">
+              Date Of Start invalid.</div>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Status</label>
+            <select name="" id="" class="form-select" formControlName="status">
+              <option value="Working">Working</option>
+              <option value="Delay">Delay</option>
+              <option value="Finish">Finish</option>
+            </select>
+          </div>
+          <div class="text-danger"
+            *ngIf="formGroup.get('status')?.touched && formGroup.get('status')?.errors?.required">
+            Status invalid.</div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-success" (click)="addProject()" data-bs-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="editProject" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Project</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formGroup">
+          <div class="mb-3">
+            <label for="" class="form-label">ID Project</label>
+            <input type="text" class="form-control" formControlName="id" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Project Name</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="Project Name">
+            <div class="text-danger" *ngIf="formGroup.get('name')?.touched && formGroup.get('name')?.errors?.required">
+              Project Name invalid.</div>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Description</label>
+            <textarea class="form-control" formControlName="description" placeholder="Description"></textarea>
+            <div class="text-danger"
+              *ngIf="(formGroup.get('description')?.touched && formGroup.get('description')?.errors?.required) || formGroup.get('description')?.errors?.minlength">
+              Description must be larger 6 character.</div>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Date Of Start</label>
+            <input type="date" class="form-control" formControlName="dateOfStart" name="dateOfStart">
+            <div class="text-danger"
+              *ngIf="formGroup.get('dateOfStart')?.touched && formGroup.get('dateOfStart')?.errors?.required">
+              Date Of Start invalid.</div>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Status</label>
+            <select name="" id="" class="form-select" formControlName="status">
+              <option value="Working">Working</option>
+              <option value="Delay">Delay</option>
+              <option value="Finish">Finish</option>
+            </select>
+          </div>
+          <div class="text-danger"
+            *ngIf="formGroup.get('status')?.touched && formGroup.get('status')?.errors?.required">
+            Status invalid.</div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-success" (click)="updateProject()" data-bs-dismiss="modal">Update</button>
+      </div>
+    </div>
+  </div>
+</div>

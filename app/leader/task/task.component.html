@@ -1,0 +1,130 @@
+<div class="">
+  <div class="card">
+    <div class="card-header">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTask">Create
+        Task</button>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Task Name</th>
+            <th scope="col">Created By</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks; index as i">
+            <th scope="row">{{ i + 1}}</th>
+            <td>{{task.title}}</td>
+            <td>{{task.creator}}</td>
+            <td>{{task.status}}</td>
+            <td>{{task.description}}</td>
+            <td>
+              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editTask"
+                (click)="editTask(task._id)">Sửa</button>
+              <button type="button" class="btn btn-danger" (click)="deleteTask(task._id)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Modal Add -->
+  <div class="modal fade" id="createTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formGroup">
+            <div>
+              <label for="" class="form-label">Task Name</label>
+              <input type="text" class="form-control" formControlName="title" placeholder="Task Name">
+            </div>
+            <div class="text-danger mb-3"
+              *ngIf="(formGroup.get('title')?.errors?.required && formGroup.get('title')?.touched) || formGroup.get('title')?.errors?.minlength">
+              Task Name is not valid</div>
+            <div class="">
+              <label for="" class="form-label">Description</label>
+              <textarea type="text" class="form-control" formControlName="description"
+                placeholder="Description"></textarea>
+            </div>
+            <div class="text-danger mb-3"
+              *ngIf="(formGroup.get('description')?.errors?.required && formGroup.get('description')?.touched) || formGroup.get('description')?.errors?.minlength">
+              Description is not valid</div>
+            <div class="">
+              <label for="" class="form-label">Status</label>
+              <select name="" id="" class="form-select" formControlName="status">
+                <option value="Working">Working</option>
+                <option value="Finish">Finish</option>
+                <option value="Delay">Delay</option>
+              </select>
+            </div>
+            <div class="text-danger mb-3"
+              *ngIf="formGroup.get('status')?.errors?.required && formGroup.get('status')?.touched">
+              Status is not valid</div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="createTask()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Edit -->
+  <div class="modal fade" id="editTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formGroup">
+            <div class="mb-3">
+              <label for="" class="form-label">ID</label>
+              <input type="text" class="form-control" formControlName="id" placeholder="Task Name" readonly>
+            </div>
+            <div>
+              <label for="" class="form-label">Task Name</label>
+              <input type="text" class="form-control" formControlName="title" placeholder="Task Name">
+            </div>
+            <div class="text-danger mb-3"
+              *ngIf="(formGroup.get('title')?.errors?.required && formGroup.get('title')?.touched) || formGroup.get('title')?.errors?.minlength">
+              Task Name is not valid</div>
+            <div class="">
+              <label for="" class="form-label">Description</label>
+              <textarea type="text" class="form-control" formControlName="description"
+                placeholder="Description"></textarea>
+            </div>
+            <div class="text-danger mb-3"
+              *ngIf="(formGroup.get('description')?.errors?.required && formGroup.get('description')?.touched) || formGroup.get('description')?.errors?.minlength">
+              Description is not valid</div>
+            <div class="">
+              <label for="" class="form-label">Status</label>
+              <select name="" id="" class="form-select" formControlName="status">
+                <option value="Working">Working</option>
+                <option value="Finish">Finish</option>
+                <option value="Delay">Delay</option>
+              </select>
+            </div>
+            <div class="text-danger mb-3"
+              *ngIf="formGroup.get('status')?.errors?.required && formGroup.get('status')?.touched">
+              Status is not valid</div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="updateTask()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

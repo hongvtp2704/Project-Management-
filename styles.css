@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+* {
+  font-family: "Lato", sans-serif;
+}
+.hamMenu {
+  min-width: 18%;
+}
+.nav-col {
+  height: 92vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #58a4cf;
+  padding: 0;
+}
+.nav-col a {
+  color: white;
+}
+.nav-row {
+  height: 8vh;
+  background-color: #4680a1;
+  position: relative;
+}
+.nav-item {
+  font-size: 1.2rem;
+}
+.navbar-nav {
+  width: 80%;
+}
+.dropdown-menu {
+  font-size: 1.1rem;
+  color: #212529;
+  background-color: #58a4cf;
+  border: none;
+  padding: 0 1rem 0 0;
+  margin: 0;
+}
+.avatar {
+  background-color: #63959c;
+  padding: 0.5rem;
+  color: #bddadf;
+  font-weight: bolder;
+  border-radius: 25%;
+}
+.brand {
+  font-size: 2rem;
+  font-weight: bolder;
+  color: #bddadf;
+}
+.nav-item a:hover {
+  transition: 0.5s;
+  color: #4680a1;
+  background-color: none;
+}
+.active {
+  color: #4680a1 !important;
+}
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bolder;
+}
+.text-task {
+  background-color: white;
+  padding: 0.5rem;
+}
+.card-task {
+  margin-right: 3rem;
+}
+.card-task:nth-child(4n) {
+  margin-right: 0;
+}
+.card-body-task {
+  padding: 1.25rem 1.25rem 0.25rem 1.25rem;
+}
+.add-task {
+  padding-left: 1.25rem;
+}

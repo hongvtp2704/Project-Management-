@@ -1,0 +1,13 @@
+.breadcrumb {
+  padding: 1% 0;
+}
+.name {
+  margin-top: 1rem;
+  font-weight: bolder;
+}
+.badge {
+  margin-left: 1rem;
+}
+.list-group-item {
+  font-size: 0.95rem;
+}

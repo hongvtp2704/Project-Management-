@@ -1,0 +1,10 @@
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: auto;
+  right: 0;
+}
+.dropdown-menu:hover {
+  transition: 0.5s;
+  background-color: #4680a1;
+}
